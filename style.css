@@ -99,7 +99,6 @@ h1 {
 body {
   background-image: linear-gradient(rgba(14, 13, 13, 0.5), rgba(4, 4, 4, 0.5)), url('https://bizenglish.adaderana.lk/wp-content/uploads/The-NSBM-Green-University-T-1.jpg'); /* Add linear-gradient with semi-transparent black overlay */
   background-size: cover;
-  background-repeat: 
   position: relative;
 }
 
