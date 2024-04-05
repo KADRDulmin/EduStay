@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      form {
+        border: 1px solid #0b0b0b;
+        margin-right: 44.5cm;
+
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <span style="margin-right: 55px"></span>
+      <button
+        type="submit"
+        value="Accept"
+        style="
+          color: #fff;
+          background: #44cc44;
+          padding: 15px 20px;
+          box-shadow: 0 4px 0 0 #2ea62e;
+        "
+        onmouseover="this.style.background='#6FE76'; this.style.boxShadow='0 4px 0 0 #7ED37E';"
+        onmouseout="this.style.background='#44cc44'; this.style.boxShadow='0 4px 0 0 #2ea62e';"
+      >
+        Accept
+      </button>
+      <span style="margin: 0px 8px"></span>
+      <button
+        type="submit"
+        value="Reject"
+        style="
+          color: #fff;
+          background: tomato;
+          padding: 15px 20px;
+          box-shadow: 0 4px 0 0 #cb4949;
+        "
+        onmouseover="this.style.background='rgb(255, 147, 128)'; this.style.boxShadow='0 4px 0 0 #EF8282';"
+        onmouseout="this.style.background='tomato'; this.style.boxShadow='0 4px 0 0 #cb4949';"
+      >
+        Reject
+      </button>
+      <br />
+      <br />
+      <input
+        type="text"
+        id="reason"
+        value="reason"
+        style="height: 3cm; width: 8cm; border-radius: 1px; text-align: center"
+      />
+    </form>
+  </body>
+</html>

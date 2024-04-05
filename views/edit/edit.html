@@ -1,0 +1,233 @@
+<div class="row mb-3 mt-3">
+    <div class="col-12" id="editFormDiv">
+        <div class="collapse" id="editCollapse">
+            <div class="card card-body">
+                <h4>Edit selected place:</h4>
+                <form id="EditPlaceForm" name="EditPlaceForm" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="place_id">ID*</label>
+                        <input type="number" class="form-control" name="idEdit" id="idEdit" minlength="0" required
+                            readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="place_title">Title*</label>
+                        <input type="text" class="form-control" name="titleEdit" id="titleEdit" placeholder=""
+                            minlength="0" maxlength="60" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="place_contact">Contact Number*</label>
+                        <input type="text" class="form-control" name="contactEdit" id="contactEdit"
+                            placeholder="0778702925" minlength="15" maxlength="15" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="place_description">Description</label>
+                        <textarea class="form-control" name="descriptionEdit" id="descriptionEdit" rows="3"
+                            maxlength="1000"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="place_coordinates">Map coordinates*</label>
+                        <div class="form-row">
+                            <div class="col">
+                                <input type="number" class="form-control" name="latEdit" id="latEdit"
+                                    placeholder="Latitude" min="0" max="256" required>
+                            </div>
+                            <div class="col">
+                                <input type="number" class="form-control" name="lngEdit" id="lngEdit"
+                                    placeholder="Longtitude" min="0" max="256" required>
+                            </div>
+                            <div class="col">
+                                <a class="btn btn-primary" id="pickFromMapBtn" onclick="setPickingMode()">Pick from
+                                    map</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col"><label for="place_price">Price*</label></div>
+                            <div class="col"><label for="place_price">Rooms Available*</label></div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col">
+                                <input type="number" class="form-control" name="priceEdit" id="priceEdit" value=""
+                                    required>
+                            </div>
+
+                            <div class="col">
+                                <input type="number" class="form-control" name="available_roomsEdit"
+                                    id="available_roomsEdit" value="" required>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- image uploads -->
+                    <div class="form-group">
+                        <label for="image1">Upload images Less Than 1mb  each. Maximum 5 images.</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="image1">New Image 1</label>
+                        <input type="file" class="form-control-file" id="image1" name="image1">
+                    </div>
+                    <div class="form-group">
+                        <label for="image2">New Image 2</label>
+                        <input type="file" class="form-control-file" id="image2" name="image2">
+                    </div>
+                    <div class="form-group">
+                        <label for="image3">New Image 3</label>
+                        <input type="file" class="form-control-file" id="image3" name="image3">
+                    </div>
+                    <div class="form-group">
+                        <label for="image4">New Image 4</label>
+                        <input type="file" class="form-control-file" id="image4" name="image4">
+                    </div>
+                    <div class="form-group">
+                        <label for="image5">New Image 5</label>
+                        <input type="file" class="form-control-file" id="image5" name="image5">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <input class="btn btn-success" type="button" id="submitEdit" value="Save changes">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-3 mt-3">
+    <div class="col-12" id="placesList"></div>
+</div>
+<div class="form-group">
+    <label for="place_tags">//TODO add tags</label>
+</div>
+<div class="row">
+    <div class="col-12">
+        <input class="btn btn-success" type="button" id="submitEdit" value="Save changes">
+    </div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+
+<div class="row mb-3 mt-3">
+    <div class="col-12" id="placesList"></div>
+</div>
+
+<script>
+    // Get list of added places from database and insert into page
+    function getPlaceList() {
+        $("#placesList").html("<div class='mx-auto'><i class='fas fa-spinner fa-pulse mr-2'></i><span>Loading places from database</span></div>");
+        $.ajax({    //create an ajax request to getPlaces.php
+            type: "GET",
+            url: "views/edit/getPlaces.php",
+            dataType: "html",   //expect html to be returned                
+            success: function (response) {
+                $("#placesList").html(response);
+            }
+        });
+    }
+
+    // Call getPlaceList() when tab loads
+    $(document).ready(function () {
+        getPlaceList();
+    });
+
+    // Display editForm collapse and populate form
+    function openEditForm(id, title, description, price, available_rooms, lat, lng, contact) {
+        //Open collapse
+        $('#editCollapse').collapse();
+        //Insert values to form
+        $("#idEdit").val(id);
+        $("#titleEdit").val(title);
+        $("#descriptionEdit").val(description);
+        $("#priceEdit").val(price);
+        $("#available_roomsEdit").val(available_rooms);
+        $("#latEdit").val(lat);
+        $("#lngEdit").val(lng);
+        $("#contactEdit").val(contact);
+    };
+
+    // function openDeleteForm(id) {
+    //     //Open collapse
+    //     $('#deleteCollapse').collapse();
+    //     //Inset values to confirmation prompt
+    //     $("#placetitle").html(title);
+    // };
+    // function cancelDelete() {
+    //     //Open collapse
+    //     $('#deleteCollapse').collapse();
+    //     //Inset values to confirmation prompt
+    //     $("#placetitle").html("");
+    // };
+
+    // Submit editForm to editPlace.php for database update
+    // Use event delegation to bind the click event to the document
+    $(document).on("click", "#submitEdit", function () {
+        var id = $("#idEdit").val();
+        var title = $("#titleEdit").val();
+        var description = $("#descriptionEdit").val();
+        var lat = $("#latEdit").val();
+        var lng = $("#lngEdit").val();
+        var price = $("#priceEdit").val();
+        var available_rooms = $("#available_roomsEdit").val();
+        var contact = $("#contactEdit").val();
+        var formData = new FormData($("#EditPlaceForm")[0]); // Create FormData object to handle file uploads
+
+        if (id == '' || title == '' || lat == '' || lng == '' || price == '' || available_rooms == '' || contact == '') {
+            alert("Please fill all required fields");
+        } else {
+            // Returns successful data submission message when the entered information is stored in database.
+            $.ajax({
+                type: "POST",
+                url: "views/edit/editPlace.php",
+                data: formData, // Include form data for image uploads
+                contentType: false, // Set content type to false for FormData
+                processData: false, // Prevent jQuery from processing the data
+                success: function (data) {
+                    if (data == "200") {
+                        // success
+                        toastr.success('Updated location ' + title + ' at position ' + lat + ' , ' + lng, 'Changes to place saved to database succesfully!');
+                    } else {
+                        // error
+                        toastr.error('Error info: ' + data, 'ERROR while saving changes to database :(');
+                    }
+                    // Update place list table
+                    getPlaceList();
+                    // Fetch markers and init map to refresh data   
+                    fetchMarkersFromDB();
+                }
+            });
+        }
+    });
+
+    // Function for deleting place by ID using deletePlace.php
+    function deletePlace(id) {
+        if (id == '') {
+            alert("Id is missing, don't know where to delete from!");
+        } else {
+            $.post("views/edit/deletePlace.php", {
+                id: id
+            }, function (data) {
+                if (data == "200") {
+                    // success
+                    toastr.success('Deleted place with id = ' + id + ' from database', 'Place removed from database succesfully!');
+                } else {
+                    // error
+                    toastr.error('Error info: ' + data, 'ERROR while removing place from database :(');
+                }
+                // Update place list table
+                getPlaceList();
+                // Fetch markers and init map to refresh data   
+                fetchMarkersFromDB();
+            });
+        }
+    }
+
+    // Prevent default form action
+    $("#EditPlaceForm").submit(function (e) {
+        return false;
+    });
+</script>

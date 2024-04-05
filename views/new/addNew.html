@@ -1,0 +1,167 @@
+<!-- Form for adding a new place -->
+<form id="NewPlaceForm" name="NewPlaceForm">
+    <div class="form-group">
+        <label for="place_title">Title*</label>
+        <input type="text" class="form-control" name="title" id="title" placeholder="" minlength="0" maxlength="60"
+            required>
+    </div>
+    <div class="form-group">
+        <label for="place_contact">Contact Number*</label>
+        <input type="text" class="form-control" name="contact" id="contact" placeholder="0778702925" minlength="10"
+            maxlength="10" required>
+    </div>
+    <div class="form-group">
+        <label for="place_description">Description</label>
+        <textarea class="form-control" name="description" id="description" rows="1" maxlength="1000"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="place_address">Address</label>
+        <textarea class="form-control" name="address" id="address" rows="1" maxlength="1000"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="place_coordinates">Map coordinates*</label>
+        <div class="form-row">
+            <div class="col-6 col-lg-4">
+                <input type="number" class="form-control" name="lat" id="lat" placeholder="Latitude" min="0" max="256"
+                    required>
+            </div>
+            <div class="col-6 col-lg-4">
+                <input type="number" class="form-control" name="lng" id="lng" placeholder="Longtitude" min="0" max="256"
+                    required>
+            </div>
+            <div class="col-12 col-lg-4">
+                <a class="btn btn-primary btn-block" id="pickFromMapBtn" onclick="setPickingMode()">Pick from map</a>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col"><label for="place_price">Price*</label></div>
+            <div class="col"><label for="place_price">Rooms Available*</label></div>
+        </div>
+
+        <div class="form-row">
+            <div class="col">
+                <input type="number" class="form-control" name="price" id="price" value="" required>
+            </div>
+
+            <div class="col">
+                <input type="number" class="form-control" name="available_rooms" id="available_rooms" value="" required>
+            </div>
+        </div>
+    </div>
+    <!-- Image upload fields -->
+    <div class="form-group">
+        <label for="image1">Upload images Less Than 1mb  each. Maximum 5 images.</label>
+    </div>
+    <div class="form-group">
+        <label for="image1">Image 1</label>
+        <input type="file" class="form-control-file" id="image1" name="image1">
+    </div>
+    <div class="form-group">
+        <label for="image2">Image 2</label>
+        <input type="file" class="form-control-file" id="image2" name="image2">
+    </div>
+    <div class="form-group">
+        <label for="image3">Image 3</label>
+        <input type="file" class="form-control-file" id="image3" name="image3">
+    </div>
+    <div class="form-group">
+        <label for="image4">Image 4</label>
+        <input type="file" class="form-control-file" id="image4" name="image4">
+    </div>
+    <div class="form-group">
+        <label for="image5">Image 5</label>
+        <input type="file" class="form-control-file" id="image5" name="image5">
+    </div>
+    <div class="form-group">
+        <label for="place_tags">//TODO add tags, sorry I ran out of time</label>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <input class="btn btn-primary" type="button" id="submitNew" value="Save location">
+            <input class="btn btn-default" type="reset" value="Clear form">
+        </div>
+    </div>
+</form>
+
+<script>
+// Options for our toaster
+toastr.options = {
+    "closeButton": true,
+    "positionClass": "toast-top-full-width",
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+}
+
+// Submit NewPlaceForm to addNew.php for database insertion
+$("#submitNew").click(function () {
+    var title = $("#title").val();
+    var contact = $("#contact").val();
+    var description = $("#description").val();
+    var address = $("#address").val();
+    var lat = $("#lat").val();
+    var lng = $("#lng").val();
+    var price = parseFloat($("#price").val());
+    var available_rooms = parseInt($("#available_rooms").val());
+
+    if (title == '' || lat == '' || lng == '' || contact == '' || price == '' || available_rooms == '') {
+        alert("Please fill all required fields");
+    } else {
+        var formData = new FormData();
+        formData.append('title', title);
+        formData.append('description', description);
+        formData.append('address', address);
+        formData.append('lat', lat);
+        formData.append('lng', lng);
+        formData.append('price', price);
+        formData.append('available_rooms', available_rooms);
+        formData.append('contact', contact);
+
+        // Add images to FormData object
+        for (var i = 1; i <= 5; i++) {
+            var file = $('#image' + i)[0].files[0];
+            if (file) {
+                formData.append('image' + i, file);
+            }
+        }
+
+        // Send form data using AJAX
+        $.ajax({
+            url: "views/new/addNew.php",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                if (data == "200") {
+                    // success
+                    toastr.success('Added location ' + title + ' at position ' + lat + " , " + lng, 'New place saved to database successfully!');
+                } else {
+                    // error
+                    toastr.error('Error info: ' + data, 'ERROR while saving place to database :(');
+                }
+                // Reset form fields
+                $('#NewPlaceForm')[0].reset();
+                // Fetch markers and init map to refresh data
+                fetchMarkersFromDB();
+            },
+            error: function (xhr, status, error) {
+                // Handle error
+                toastr.error('Error: ' + error, 'Failed to submit form :(');
+            }
+        });
+    }
+});
+
+// Prevent default form submission
+$("#NewPlaceForm").submit(function (e) {
+    e.preventDefault();
+});
+</script>

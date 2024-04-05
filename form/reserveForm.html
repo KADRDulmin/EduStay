@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      form {
+        border: 1px solid #0b0b0b;
+        margin-right: 39cm;
+        padding: 25px;
+        padding-right: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <form method="post" onsubmit="return validateForm();">
+      <h3>Reservation</h3>
+      First Name: <span style="margin: 0 88px"></span> Last Name:<br />
+      <input type="text" id="fname" style="width: 6cm; height: 20px" />
+      <span style="margin: 0px 10px"></span>
+      <input type="text" id="lname" style="width: 6cm; height: 20px" />
+      <br />
+      <br />
+      Phone:
+      <br />
+      <input type="number" id="phone" style="width: 6cm; height: 20px" />
+      <br />
+      <br />
+      Email:
+      <br />
+      <input type="email" id="email" style="width: 6cm; height: 20px" />
+      <br />
+      <br />
+      Home Address:
+      <br />
+      <input type="text" id="address" style="width: 6cm; height: 20px" />
+      <br />
+      <br />
+      Note:
+      <br />
+      <input type="text" id="note" style="width: 6cm; height: 100px" />
+      <br />
+      <br />
+      <button
+        type="submit"
+        value="reserve"
+        id="reserve"
+        style="height: 0.8cm; width: 2cm"
+      >
+        Reserve
+      </button>
+    </form>
+  </body>
+</html>
