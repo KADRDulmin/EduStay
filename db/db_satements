@@ -1,13 +1,11 @@
-CREATE DATABASE edustay;
-
 CREATE TABLE Places (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(60) NOT NULL,
     contact VARCHAR(10) NOT NULL,
     description TEXT,
     address TEXT,
-    latitude DECIMAL(11, 8) NOT NULL,
-    longitude DECIMAL(11, 8) NOT NULL,
+    lat DECIMAL(11, 8) NOT NULL,
+    lng DECIMAL(11, 8) NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
     available_rooms INT NOT NULL
 );
