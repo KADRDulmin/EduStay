@@ -101,4 +101,47 @@ body {
   background-size: cover;
   position: relative;
 }
+/* Style for the dropdown menu */
+.login-form select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+/* Style for the login button */
+.login-form button {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Style for the login button on hover */
+.login-form button:hover {
+  background-color: #45a049;
+}
+
+/* Style for the form messages */
+.login-form .message {
+  text-align: center;
+}
+
+/* Style for links within the form messages */
+.login-form .message a {
+  color: #4CAF50;
+}
+
+/* Style for links within the form messages on hover */
+.login-form .message a:hover {
+  color: #45a049;
+}
 

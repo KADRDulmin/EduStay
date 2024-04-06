@@ -42,6 +42,11 @@
         <form class="login-form">
             <input type="text" placeholder="Email"/>
             <input type="password" placeholder="password"/>
+            <select name="login-as">
+        <option value="admin">Login as Admin</option>
+        <option value="student">Login as Student</option>
+        <option value="landowner">Login as Landowner</option>
+    </select>
             <button>login</button>
             <br>
             <br>
