@@ -84,9 +84,10 @@ body {
     position: relative; /* To position the Connect with Us element */
 }
 
-.footer-column h3 {
+.footer-column h4 {
     margin-bottom: 10px;
     border-bottom: 1px solid #fff;
+    color: white;
 }
 
 .footer-column p {

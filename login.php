@@ -52,11 +52,11 @@
             <br>
             <br>
             <p class="message"><a href="#">Forgot Password?</a></p>
-            <p class="message">Not registered? <a href="#">Create an account</a></p>
+            <p class="message">Not registered? <a href="signup.php">Create an account</a></p>
             
         </form>
     </div>
 </div>
-
+<?php include('footer.php'); ?>
 </body>
 </html>

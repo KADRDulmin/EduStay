@@ -23,7 +23,7 @@
    <?php include('header.php'); ?>
    
 
-
+<div class="dashboard-container">
     <main role="main">
         <div class="container-fluid">
             <div class="row mb-3 mt-3">
@@ -31,20 +31,20 @@
                     <!-- Navigation Tabs -->
                     <nav>
                       <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link active" id="nav-new-tab" data-toggle="tab" href="#nav-new" role="tab" aria-controls="nav-new" aria-selected="true" onclick="loadAjax('new')">New</a>
-                        <a class="nav-item nav-link" id="nav-edit-tab" data-toggle="tab" href="#nav-edit" role="tab" aria-controls="nav-edit" aria-selected="false" onclick="loadAjax('edit')">Edit / Delete</a>
+                        <a class="nav-item nav-link active" id="nav-new-tab" data-toggle="tab" href="#nav-new" role="tab" aria-controls="nav-new" aria-selected="true" onclick="loadAjax('new')">Add Location</a>
+                        <a class="nav-item nav-link" id="nav-edit-tab" data-toggle="tab" href="#nav-edit" role="tab" aria-controls="nav-edit" aria-selected="false" onclick="loadAjax('edit')">Modify Location</a>
                       </div>
                     </nav>
                     <!-- Tabs content -->
                     <div class="tab-content" id="nav-tabContent">
                       <!-- Add new - page -->
                       <div class="tab-pane fade show active pt-3 pb-3" id="nav-new" role="tabpanel" aria-labelledby="nav-new-tab">
-                        <h4>Add new location:</h4>
+                        <h2>Add New Location:</h2>
                         <div id="addPlace"></div>
                       </div>
                       <!-- Edit / delete - page -->
                       <div class="tab-pane fade pt-3 pb-3" id="nav-edit" role="tabpanel" aria-labelledby="nav-edit-tab">
-                        <h4>Choose a place to edit or delete:</h4>
+                        <h2>Modify Your Location:</h2>
                         <div id="listPlaces"></div>
                       </div>
                     </div>
@@ -56,6 +56,7 @@
             </div>
         </div>
     </main>
+  </div>
 
    <?php include('footer.php'); ?>
 
