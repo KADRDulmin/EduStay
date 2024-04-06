@@ -5,15 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
+      .contaner {
+        display: flex;
+      }
       form {
         border: 1px solid #0b0b0b;
-        margin-right: 39cm;
+        width: 50%;
+        
+        margin: auto;
         padding: 25px;
-        padding-right: 40px;
+        /* padding-right: 40px; */
       }
     </style>
   </head>
   <body>
+    <div class="contaner">
     <form method="post" onsubmit="return validateForm();">
       <h3>Reservation</h3>
       First Name: <span style="margin: 0 88px"></span> Last Name:<br />
@@ -51,5 +57,6 @@
         Reserve
       </button>
     </form>
+  </div>
   </body>
 </html>
