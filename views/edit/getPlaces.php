@@ -50,11 +50,11 @@ if ($result = mysqli_query($link, $sql)) {
                                 <div class='col-12 d-block d-sm-none'><i class='fas fa-book mr-2'></i><span>" . $row['description'] . "</span></div>";
             // Fetch and display images for the place ID in a carousel
             $placeId = $row['id'];
-            $sqlImages = "SELECT image_data FROM images WHERE place_id = $placeId";
+            $sqlImages = "SELECT image_path FROM images WHERE place_id = $placeId";
             $imageResult = mysqli_query($link, $sqlImages);
             $images = [];
             while ($imageRow = mysqli_fetch_assoc($imageResult)) {
-                $images[] = base64_encode($imageRow['image_data']);
+                $images[] = $imageRow['image_path'];
             }
 
             echo "<div class='col-12'>";
@@ -63,7 +63,7 @@ if ($result = mysqli_query($link, $sql)) {
             foreach ($images as $key => $image) {
                 $activeClass = ($key == 0) ? 'active' : '';
                 echo "<div class='carousel-item $activeClass' style='height: 500px; max-width: auto;'>";
-                echo "<img class='d-block w-100' src='data:image/jpeg;base64,$image' alt='Slide' style='display: block; margin: auto; width: 60%;'>";
+                echo "<img class='d-block w-100' src='images/$image' alt='Slide' style='display: block; margin: auto; width: 60%;'>";
                 echo "</div>";
             }
             echo "</div>";
