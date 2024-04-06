@@ -4,11 +4,11 @@ require_once 'db/config.php';
 
 // Function to fetch images for a specific place ID
 function getImagesForPlace($placeId, $link) {
-    $sql = "SELECT image_data FROM images WHERE place_id = '$placeId'";
+    $sql = "SELECT image_path FROM images WHERE place_id = '$placeId'";
     $images = array();
     if($result = mysqli_query($link, $sql)){
         while($row = mysqli_fetch_assoc($result)){
-            $images[] = base64_encode($row['image_data']);
+            $images[] = $row['image_path'];
         }
         mysqli_free_result($result);
     }

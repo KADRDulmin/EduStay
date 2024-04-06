@@ -65,7 +65,7 @@ for (var i = 0; i < locationsFromDB.length; i++) {
   // Loop through images for the current place
   for (var j = 0; j < locationsFromDB[i].images.length; j++) {
       imagesHTML += '<div class="carousel-item' + (j === 0 ? ' active' : '') + '">' +
-          '<img src="data:image/jpeg;base64,' + locationsFromDB[i].images[j] + '" class="carousel-image" style="width: auto; height: 250px;" />' +
+          '<img src="images/' + locationsFromDB[i].images[j] + '" class="carousel-image" style="width: auto; height: 250px;" />' +
           '</div>';
   }
   // Construct the content with carousel
