@@ -5,12 +5,13 @@
     <h1>WELCOME TO <br><span style="color: rgba(59, 181, 75, 1);">GREEN</span> ACCOMMODATION</h1>
 
     <meta charset="UTF-8">
-    <title>landlord</title>
-    <link rel="stylesheet" href="css/wardon.css">
+    <title>Signup</title>
+    <link rel="stylesheet" href="css/sign-style.css">
     <style>
         </style>
 </head>
 <body>
+<?php include('header.php'); ?>
   <div class="sign-page">
   
     <div class="form">
@@ -25,17 +26,18 @@
          <form class="register-form">
             <input type="text" placeholder="Full Name"/>
             <input type="text" placeholder="Last Name"/>
+            <input type="password" placeholder="password"/>
             <input type="text" placeholder="email address"/>
-            <input type="pw" placeholder="password"/>
+            <input type="pwd" placeholder="confirm pw"/>
             
         </form>
         <form class="login-form">
             <input type="text" placeholder="Full Name"/>
             <input type="text" placeholder="Last Name"/>
             <input type="text" placeholder="Email"/>
-            <input type="pw" placeholder="Password"/>
-            
-            <button>Add New User</button>
+            <input type="password" placeholder="Password"/>
+            <input type="pwd" placeholder="Confirm Password"/>
+            <button>Sign Up</button>
             <br>
             <br>
             

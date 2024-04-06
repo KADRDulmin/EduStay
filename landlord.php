@@ -5,12 +5,14 @@
     <h1>WELCOME TO <br><span style="color: rgba(59, 181, 75, 1);">GREEN</span> ACCOMMODATION</h1>
 
     <meta charset="UTF-8">
-    <title>Student register-form</title>
-    <link rel="stylesheet" href="css/stu reg.css">
+    <title>landlord</title>
+    <link rel="stylesheet" href="css/wardon.css">
     <style>
         </style>
 </head>
 <body>
+<?php include('header.php'); ?>
+
   <div class="sign-page">
   
     <div class="form">
@@ -23,19 +25,17 @@
         </div>
         <br>
          <form class="register-form">
-            <input type="text" placeholder="user name"/>
             <input type="text" placeholder="Full Name"/>
             <input type="text" placeholder="Last Name"/>
-            <input type="password" placeholder="password"/>
             <input type="text" placeholder="email address"/>
-           
+            <input type="pw" placeholder="password"/>
+            
         </form>
         <form class="login-form">
-            <input type="text" placeholder="User Name"/>
             <input type="text" placeholder="Full Name"/>
             <input type="text" placeholder="Last Name"/>
             <input type="text" placeholder="Email"/>
-            <input type="password" placeholder="Password"/>
+            <input type="pw" placeholder="Password"/>
             
             <button>Add New User</button>
             <br>
