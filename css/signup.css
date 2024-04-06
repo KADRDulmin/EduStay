@@ -88,6 +88,15 @@
 .container .info span .fa {
   color: #EF3B3A;
 }
+.login-form select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
 
 h1 {
   font-family: Montserrat, sans-serif;

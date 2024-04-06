@@ -7,7 +7,7 @@
 
     <meta charset="UTF-8">
     <title>Signup</title>
-    <link rel="stylesheet" href="css/sign-style.css">
+    <link rel="stylesheet" href="css/signup.css">
     <style>
         </style>
 </head>
@@ -38,6 +38,12 @@
             <input type="text" placeholder="Email"/>
             <input type="password" placeholder="Password"/>
             <input type="pwd" placeholder="Confirm Password"/>
+            <select name="login-as">
+                <option value="student">Login as Student</option>
+                <option value="landowner">Login as Land Lord</option>
+                <option value="landowner">Login as Warden</option>
+                <option value="admin">Login as Admin</option>
+            </select>
             <button>Sign Up</button>
             <br>
             <br>
