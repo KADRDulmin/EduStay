@@ -1,0 +1,128 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', Arial, sans-serif;
+}
+
+
+.site-footer {
+    background-color: #12203c; /* Dark blue color */
+    color: #fff;
+    padding: 20px 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-columns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.footer-column {
+    flex-basis: 30%;
+    margin-bottom: 20px;
+}
+
+.footer-column h3 {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #fff;
+}
+
+.footer-column ul li:hover {
+    color: #18e455;
+}
+
+.footer-column p {
+    color: #ccc; /* Light gray color for text in columns */
+}
+
+.social-icons {
+    display: flex;
+}
+
+.social-icon {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #fff; /* White background for social icons */
+    color: #12203c; /* Dark blue color for icon */
+    margin-right: 10px;
+    border-radius: 50%;
+    font-size: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.social-icon:hover {
+    background-color: #18e455; /* Dark blue background on hover */
+    color: #fff; /* White color on hover */
+}
+
+.copyright h6{
+    margin-left: 45%;
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+    .footer-columns {
+        flex-direction: column;
+    }
+
+    .footer-column {
+        flex-basis: 100%;
+    }
+}
+.footer-column {
+    flex-basis: 30%;
+    margin-bottom: 20px;
+    position: relative; /* To position the Connect with Us element */
+}
+
+.footer-column h4 {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #fff;
+    color: white;
+}
+
+.footer-column p {
+    color: #ccc; /* Light gray color for text in columns */
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.footer-column ul li a:hover {
+    color: #ffc107; /* Change color on hover */
+}
+
+.connect-with-us {
+    display: none; /* Hide the Connect with Us element initially */
+    position: absolute;
+    bottom: -30px; /* Position it below the Quick Links section */
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+

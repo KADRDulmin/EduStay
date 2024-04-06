@@ -7,7 +7,11 @@ a, a:hover {
 #map {
   min-height: 600px;
   height: 100%;
-  width: 100%; }
+  width: 90%; 
+  margin-left: 12%;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;}
+
 
 textarea {
   min-height: 65px;
@@ -33,7 +37,13 @@ td {
 
 /*# sourceMappingURL=style.css.map */
 
-
+.dashboard-container{
+  max-width: 1750px;
+  margin-left: 4%;
+  margin-bottom: 20px;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+}
 .login-page {
   width: 360px;
   padding: 8% 0 0;
@@ -43,8 +53,9 @@ td {
   position: relative;
   z-index: 1;
   background: #FFFFFF;
+  color: white;
   max-width: 360px;
-  margin: 0 auto 100px;
+  margin: 0 auto 100px 30px;
   padding: 45px;
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
@@ -53,6 +64,7 @@ td {
   font-family: "Roboto", sans-serif;
   outline: 0;
   background: #f2f2f2;
+  color: #FFFFFF;
   width: 100%;
   border: 0;
   margin: 0 0 15px;
@@ -123,7 +135,41 @@ td {
   color: #EF3B3A;
 }
 
+.tab-pane fade show active pt-3 pb-3 h4{
+  color: white;
+}
+
 h1 {
+  font-family: Montserrat, sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+  color: rgb(251, 255, 252);
+  text-align: center;
+}
+.tab-pane fade show active pt-3 pb-3 h3 {
+  font-family: Montserrat, sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  color: rgb(3, 98, 223);
+  text-align: center;
+}
+h3 {
+  font-family: Montserrat, sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+
+h2 {
+  font-family: Montserrat, sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  color: rgb(3, 98, 223);
+  text-align: center;
+}
+
+h4 {
   font-family: Montserrat, sans-serif;
   font-size: 50px;
   font-weight: bold;
@@ -136,3 +182,9 @@ body {
   position: relative;
 }
 
+.main-container{
+  display: flex;
+  background-image: linear-gradient(rgba(14, 13, 13, 0.5), rgba(4, 4, 4, 0.5)), url('https://bizenglish.adaderana.lk/wp-content/uploads/The-NSBM-Green-University-T-1.jpg');
+  background-size: cover;
+  position: relative;
+}

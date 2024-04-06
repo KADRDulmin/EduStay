@@ -43,19 +43,20 @@
             <input type="text" placeholder="Email"/>
             <input type="password" placeholder="password"/>
             <select name="login-as">
-        <option value="admin">Login as Admin</option>
         <option value="student">Login as Student</option>
-        <option value="landowner">Login as Landowner</option>
+        <option value="landowner">Login as Land Lord</option>
+        <option value="landowner">Login as Warden</option>
+        <option value="admin">Login as Admin</option>
     </select>
             <button>login</button>
             <br>
             <br>
             <p class="message"><a href="#">Forgot Password?</a></p>
-            <p class="message">Not registered? <a href="#">Create an account</a></p>
+            <p class="message">Not registered? <a href="signup.php">Create an account</a></p>
             
         </form>
     </div>
 </div>
-
+<?php include('footer.php'); ?>
 </body>
 </html>

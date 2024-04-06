@@ -2,17 +2,17 @@
 
 header{
   position: relative;
-  max-width: 1200px;
+  max-width: 1800px;
   margin: 20px auto;
   padding:10px;
-  background: #fff;
+  background: rgba(12, 110, 223, 0.726);
   box-sizing: border-box;
   border-radius:4px;
   box-shadow:0 2px 5px rgba(0,0,0,.2);
   
 }
 .header-logo{
-  color: #069370;
+  color: white;
   height: 60px;
   font-size:36px;
   line-height: 60px;
@@ -22,6 +22,11 @@ header{
   float: left;
   font-weight: 700;
   text-decoration: none;
+}
+.header-logo:hover{
+  color: lightgreen;
+  transform: scale(1.225);
+  transition: 0.3s;
 }
 nav{
   float: right;
@@ -37,33 +42,31 @@ nav ul{
 nav ul li
 {
   list-style:none;
-  font-family:'Poppins', sans-serif;
 }
+
 nav ul li a{
   display:block;
   margin:10px 0;
   padding:10px 20px;
   text-decoration: none;
-  color:#262626;
+  color:white;
 }
-nav ul li a.active{
-  background: #0366fc;
-  color: #fff;
-  transition: 0.05s;
+.login-button{
+  background-color: lightgreen;
+  margin-left: 30px;
   border-radius: 5px;
+  color: white;
 }
-nav ul li a.login-button{
-    margin-left: 1.5em;
-    background: #0366fc;
-    color: #fff;
-    transition: 0.05s;
-    border-radius: 5px;
+
+.login-button:hover{
+  transform: scale(1.125);
+  background-color: lightgreen;
+  color: rgba(12, 110, 223, 0.726);
 }
-nav ul li a:hover{
-  background:#069370;
+nav ul li a.active, nav ul li a:hover{
+  background:lightgreen;
   color:#fff;
-  transition:0.5s;
-  border-radius: 5px;
+  transition:0.3s;
   
 }
 @media(max-width: 1200px){
