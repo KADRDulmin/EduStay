@@ -21,6 +21,8 @@
 
   <body>
    <?php include('header.php'); ?>
+   
+
 
     <main role="main">
         <div class="container-fluid">
@@ -55,9 +57,7 @@
         </div>
     </main>
 
-    <footer class="text-muted">
-
-    </footer>
+   <?php include('footer.php'); ?>
 
     <!-- Bootstrap core JavaScript and other scripts
     ================================================== -->
