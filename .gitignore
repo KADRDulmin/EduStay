@@ -1,2 +1,4 @@
 *.scssc
 db/config.php
+*.png
+db/config.php

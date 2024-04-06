@@ -15,18 +15,24 @@ $contact = mysqli_real_escape_string($link, $_REQUEST['contact']);
 $sql = "INSERT INTO places (id, title, description, address, lat, lng, price, available_rooms, contact) VALUES (NULL, '$title', '$description', '$address', '$lat', '$lng', '$price', '$available_rooms', '$contact')";
 
 // Return status
-if(mysqli_query($link, $sql)){
+if (mysqli_query($link, $sql)) {
     // Get the ID of the last inserted row
     $lastId = mysqli_insert_id($link);
-    
+
     // Function to process and insert a single image
-    function processAndInsertImage($fieldName, $lastId, $link) {
+    function processAndInsertImage($fieldName, $lastId, $link)
+    {
         if ($_FILES[$fieldName]['error'] === UPLOAD_ERR_OK) {
             $tmpName = $_FILES[$fieldName]['tmp_name'];
             $imageData = file_get_contents($tmpName);
-            
-            // Insert the image into the database
-            $sql = "INSERT INTO images (place_id, image_data) VALUES ('$lastId', '" . mysqli_real_escape_string($link, $imageData) . "')";
+
+            // Move the uploaded image to a folder
+            $file_name = $_FILES[$fieldName]['name'];
+            $folder = '../../images/' . $file_name;
+            move_uploaded_file($tmpName, $folder);
+
+            // Insert image path into the database
+            $sql = "INSERT INTO images (place_id, image_path) VALUES ('$lastId', '$file_name')";
             if (!mysqli_query($link, $sql)) {
                 echo "Error inserting image: " . mysqli_error($link);
             }
@@ -34,10 +40,13 @@ if(mysqli_query($link, $sql)){
             echo 'Error uploading ' . $fieldName . ' image: ' . $_FILES[$fieldName]['error'] . "<br>";
         }
     }
-    
+
     // Validate and process each image upload
     for ($i = 1; $i <= 5; $i++) {
-        processAndInsertImage('image' . $i, $lastId, $link);
+        // Check if the file field is empty
+        if (!empty($_FILES['image' . $i]['name'])) {
+            processAndInsertImage('image' . $i, $lastId, $link);
+        }
     }
 
     echo "200"; // Success response
@@ -47,4 +56,3 @@ if(mysqli_query($link, $sql)){
 
 // Close connection
 mysqli_close($link);
-?>
