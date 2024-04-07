@@ -21,10 +21,9 @@
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li>&#10148 <a href="#">Home</a></li>
-                        <li>&#10148 <a href="#">Services</a></li>
-                        <li>&#10148 <a href="#">About</a></li>
-                        <li>&#10148 <a href="#">Contact</a></li>
+                        <li>&#10148 <a href="index.php">Home</a></li>
+                        <li>&#10148 <a href="about.php">About</a></li>
+                        <li>&#10148 <a href="contact.php">Contact</a></li>
                         <li class="connect-with-us"><a href="#">Connect with Us</a></li>
                     </ul>
                 </div>

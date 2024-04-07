@@ -79,6 +79,7 @@ nav ul li a{
 }
 nav ul li a.active, nav ul li a:hover{
   background:lightgreen;
+  border-radius: 5px;
   color:#fff;
   transition:0.3s;
   
