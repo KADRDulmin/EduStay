@@ -55,23 +55,11 @@ if ($db->dbConnect()) {
               <nav>
                 <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                   <a class="nav-item nav-link active" id="nav-edit-tab" data-toggle="tab" href="#nav-edit" role="tab" aria-controls="nav-edit" aria-selected="true" onclick="loadAjax('edit')">Modify Location</a>
-                  <!-- ADMIN ACCESS CONTROL -->
-                  <?php
-                  if ($admin_access === true) {
-                  ?>
+                  <!-- ACCESS CONTROL -->
+                  <?php if ($admin_access === true || $landlord_access === true) { ?>
                     <a class="nav-item nav-link" id="nav-new-tab" data-toggle="tab" href="#nav-new" role="tab" aria-controls="nav-new" aria-selected="false" onclick="loadAjax('new')">Add Location</a>
-                  <?php
-                  }
-                  ?>
+                  <?php } ?>
 
-                  <!-- LANDLORD ACCESS CONTROL -->
-                  <?php
-                  if ($landlord_access === true) {
-                  ?>
-                    <a class="nav-item nav-link" id="nav-new-tab" data-toggle="tab" href="#nav-new" role="tab" aria-controls="nav-new" aria-selected="false" onclick="loadAjax('new')">Add Location</a>
-                  <?php
-                  }
-                  ?>
                 </div>
               </nav>
               <!-- Tabs content -->
@@ -85,24 +73,7 @@ if ($db->dbConnect()) {
                 <!-- Add new - page -->
                 <div class="tab-pane fade pt-3 pb-3" id="nav-new" role="tabpanel" aria-labelledby="nav-new-tab">
                   <h2>Add New Location: <?php echo $id; ?></h2>
-
-                  <!-- ADMIN ACCESS CONTROL -->
-                  <?php
-                  if ($admin_access === true) {
-                  ?>
                     <div id="addPlace"></div>
-                  <?php
-                  }
-                  ?>
-                  <!-- LANDLORD ACCESS CONTROL -->
-                  <?php
-                  if ($landlord_access === true) {
-                  ?>
-                    <div id="addPlace"></div>
-                  <?php
-                  }
-                  ?>
-
                 </div>
 
                 <!-- Edit / delete - page -->

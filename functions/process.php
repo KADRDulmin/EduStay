@@ -3,7 +3,7 @@ class Database
 {
     private $host = 'localhost';
     private $username = 'root';
-    private $password = '';
+    private $password = 'mysql';
     private $database = 'edustay';
     public $conn;
 
@@ -128,7 +128,7 @@ class Database
             return "Insufficient privileges"; // User does not have admin access
         }
 
-        
+
 
     public function closeConnection()
     {
