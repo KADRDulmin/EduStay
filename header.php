@@ -1,7 +1,3 @@
-<?php
-require "functions/process.php";
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
