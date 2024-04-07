@@ -20,6 +20,7 @@ class Database
         }
         return $conn;
     }
+
     public function signUp($role, $email, $password, $firstname, $lastname)
     {
         // Escape inputs to prevent SQL injection
@@ -47,15 +48,67 @@ class Database
         }
     }
 
+    public function logIn($email, $password)
+    {
+        // Escape inputs to prevent SQL injection
+        $email = mysqli_real_escape_string($this->conn, $email);
+        $password = mysqli_real_escape_string($this->conn, $password);
 
+        // Retrieve user data from database
+        $sql = "SELECT * FROM Users WHERE Email = '$email'";
+        $result = mysqli_query($this->conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+
+        if (mysqli_num_rows($result) != 0) {
+            // Verify password
+            if (password_verify($password, $row['Password'])) {
+                // Set session variables
+                $_SESSION['UserID'] = $row['UserID'];
+                $login = true;
+            } else {
+                $login = false;
+                return "Wrong password"; // Incorrect password
+            }
+        } else {
+            $login = false;
+            return "Email not found"; // Email does not exist
+        }
+        return $login;
+    }
 
     public function closeConnection()
     {
         mysqli_close($this->conn);
     }
+    // Function to logout
+    function logout()
+    {
+        // Unset all session variables
+        session_unset();
+
+        // Destroy the session
+        session_destroy();
+
+        // Redirect to login page
+        header("Location: login.php");
+        exit();
+    }
+    // Check if the logout button is clicked
+    function Logoutbutton()
+    {
+        // Check if the logout button is clicked
+        if (isset($_POST['logout'])) {
+            $this->logout();
+        }
+    }
+    function checkLogout()
+    {
+        // Destroy session if the timeout is reached
+        if (isset($_SESSION['timeout']) && time() > $_SESSION['timeout']) {
+            $this->logout();
+        }
+    }
 }
 
-
-
-?>
-
+$database = new DataBase();
+$database->checkLogout();

@@ -52,9 +52,7 @@
   color: #4CAF50;
   text-decoration: none;
 }
-.form .register-form {
-  display: none;
-}
+
 .container {
   position: relative;
   z-index: 1;
@@ -147,4 +145,46 @@ body {
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
 }
+
+/* Style for the outer container */
+.form-select {
+  position: relative;
+  width: 100%;
+  margin: 0px 0px 15px 0px;
+}
+
+/* Style for the select dropdown */
+.role_select select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 0px solid #b3b3b3;
+  border-radius: 5px;
+  appearance: none; /* Removes default arrow icon */
+  -webkit-appearance: none; /* Safari and Chrome */
+  -moz-appearance: none; /* Firefox */
+  background-color: #f2f2f2;
+  color: #727272;
+}
+
+/* Style for the arrow icon */
+.role_select select::after {
+  content: '\25BC'; /* Unicode character for down arrow */
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none; /* Prevents click events on arrow */
+}
+
+/* Style for option hover */
+.role_select select option:hover {
+  background-color: #f4f4f4;
+}
+
+/* Style for option select */
+.role_select select option:checked {
+  background-color: #eaeaea;
+}
+
 

@@ -1,3 +1,15 @@
+<?php
+// Start a session
+session_start();
+ob_start();
+
+
+// Check if the user is not logged in, redirect to login.php
+        // Get the DoctorID from $_SESSION['DoctorID']
+        $ID = $_SESSION['UserID'];
+
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -39,7 +51,7 @@
                     <div class="tab-content" id="nav-tabContent">
                       <!-- Add new - page -->
                       <div class="tab-pane fade show active pt-3 pb-3" id="nav-new" role="tabpanel" aria-labelledby="nav-new-tab">
-                        <h2>Add New Location:</h2>
+                        <h2>Add New Location: <?php echo $ID; ?></h2>
                         <div id="addPlace"></div>
                       </div>
                       <!-- Edit / delete - page -->
@@ -74,3 +86,6 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBleZ4eth9X_mKyb88UqQqYpIJwm05k-Iw"></script>    
 </body>
 </html>
+<?php
+ob_end_flush();
+?>
