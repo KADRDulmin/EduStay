@@ -48,7 +48,9 @@
   
     <br>
     
-        <Caption><h2 style="margin-left: 30px; font-family: 'Anton', sans-serif; color: rgb(9, 9, 53); font-size: xx-large;"> Room Reservation Form </h2><button type="submit" class="btn btn-primary btn-block" style="width: 15%; margin-left: 35%;">Cancel</button></Caption>
+        <Caption><h2 style="margin-left: 30px; font-family: 'Anton', sans-serif; color: white; font-size: xx-large;"> Room Reservation Form </h2><form action="index.php" method="GET">
+    <button type="submit" class="btn btn-primary btn-block" style="background: red; width: 15%; margin-left: 35%;">Cancel</button>
+</form></Caption>
     <div class="border">
      
         <form>
@@ -97,5 +99,6 @@
     
     </div>
     <br><br>
+
 </body>
 </html>

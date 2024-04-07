@@ -160,7 +160,7 @@ if ($db->dbConnect()) {
                     echo "<p class='mb-0'><strong>Available Rooms:</strong> " . htmlspecialchars($rowAvailable['available_rooms']) . "</p>";
                     echo "</div>"; // Close info column
                     echo "<div class='col-md-2 text-right'>";
-                    echo "<button class='btn btn-primary' onclick='bookNow(" . $rowAvailable['id'] . ")'>Book Now</button>";
+                    echo "<button class='btn btn-primary' onclick='window.location.href=\"reserveForm.php?place_id=" . $rowAvailable['id'] . "\"'>Book Now</button>";
                     echo "</div>"; // Close book button column
                     echo "</div>"; // Close row
                     echo "</div>"; // Close list group item
