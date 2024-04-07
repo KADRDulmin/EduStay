@@ -3,7 +3,7 @@ class Database
 {
     private $host = 'localhost';
     private $username = 'root';
-    private $password = '';
+    private $password = 'mysql';
     private $database = 'edustay';
     public $conn;
 

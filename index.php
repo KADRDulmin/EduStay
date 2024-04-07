@@ -56,7 +56,9 @@ if ($db->dbConnect()) {
               <!-- Navigation Tabs -->
               <nav>
                 <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                <?php if ($admin_access === true || $landlord_access === true) { ?>
                   <a class="nav-item nav-link active" id="nav-edit-tab" data-toggle="tab" href="#nav-edit" role="tab" aria-controls="nav-edit" aria-selected="true" onclick="loadAjax('edit')">Modify Location</a>
+                  <?php } ?>
                   
                   <!-- ACCESS CONTROL -->
                   <?php if ($admin_access === true || $landlord_access === true) { ?>
@@ -69,7 +71,9 @@ if ($db->dbConnect()) {
               <div class="tab-content" id="nav-tabContent">
 
                 <div class="tab-pane fade show active pt-3 pb-3" id="nav-edit" role="tabpanel" aria-labelledby="nav-edit-tab">
+                <?php if ($admin_access === true || $landlord_access === true) { ?>
                   <h2>Modify Your Location:</h2>
+                  <?php } ?>
                   <div id="listPlaces"></div>
                 </div>
 

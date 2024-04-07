@@ -1,3 +1,26 @@
+<?php
+// Start a session
+session_start();
+ob_start();
+require "functions/process.php";
+
+
+// Check if the user is not logged in, redirect to login.php
+if (!isset($_SESSION['UserID'])) {
+  header("Location: login.php");
+  exit();
+}
+// Get the UserID from $_SESSION['UserID']
+$id = $_SESSION['UserID'];
+$db = new Database();
+
+if ($db->dbConnect()) {
+
+  $admin_access = $db->admin_access($id);
+  $landlord_access = $db->landlord_access($id);
+  $warden_access = $db->warden_access($id);
+  $student_access = $db->student_access($id);
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -120,4 +143,7 @@
 	<?php include('footer.php'); ?>
 	</body>
 </html>
-
+<?php
+}
+ob_end_flush();
+?>

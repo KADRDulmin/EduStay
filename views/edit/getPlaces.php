@@ -23,7 +23,7 @@ if ($db->dbConnect()) {
     $warden_access = $db->warden_access($id);
     $student_access = $db->student_access($id);
 
-    if ($admin_access === true || $landlord_access === true) {
+    if ($admin_access === true || $landlord_access === true || $warden_access === true) {
 
         // Perform query
         $sql = "SELECT * FROM places ORDER BY id ASC";
@@ -51,8 +51,10 @@ if ($db->dbConnect()) {
                     $parameters = $row['id'] . ",\"" . $row['title'] . "\",\"" . $row['description'] . "\",\"" . $row['price'] . "\",\"" . $row['available_rooms'] . "\",\"" . $row['lat'] . "\",\"" . $row['lng'] . "\"";
                     echo "<td class='text-right'>";
                     echo "<button class='btn btn-info btn-sm mr-1' data-toggle='collapse' data-target='#infoRow" . $row['id'] . "' aria-expanded='false' aria-controls='infoRow" . $row['id'] . "'><i class='fas fa-info-circle'></i></button>";
+                    if ($admin_access === true) {
                     echo "<button class='btn btn-primary btn-sm mr-1' onclick='openEditForm(" . $parameters . ")'><i class='fas fa-edit'></i></button>";
                     echo "<button class='btn btn-danger btn-sm' data-toggle='collapse' data-target='#deletePromptRow" . $row['id'] . "' aria-expanded='false' aria-controls='deletePromptRow" . $row['id'] . "'><i class='fas fa-trash-alt'></i></button>";
+                    }
                     echo "</td>";
                     echo "</tr>";
 
@@ -98,10 +100,12 @@ if ($db->dbConnect()) {
                     } // Close if for image results
 
                     // Accept and Reject buttons
+                    if ($warden_access === true) {
                     echo "<div class='text-right mt-3'>";
                     echo "<button class='btn btn-success' onclick='acceptPlace(" . $row['id'] . ")'>Accept</button> ";
-                    echo "<button class='btn btn-danger' onclick='rejectPlace(" . $row['id'] . ")'>Reject</button>";
+                    echo "<button class='btn btn-danger' data-toggle='collapse' data-target='#deletePromptRow" . $row['id'] . "' aria-expanded='false' aria-controls='deletePromptRow" . $row['id'] . "'>Reject</button>";
                     echo "</div>"; // Close action buttons div
+                    }
 
                     echo "</div>"; // Close card-body
                     echo "</div>"; // Close card
