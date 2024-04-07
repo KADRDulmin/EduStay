@@ -1,5 +1,12 @@
 <?php
+// Start a session
+session_start();
+ob_start();
+
 require_once '../../db/config.php';
+
+// Get the UserID from $_SESSION['UserID']
+$id = $_SESSION['UserID'];
 
 // Escape user inputs for security
 $title = mysqli_real_escape_string($link, $_REQUEST['title']);
@@ -12,7 +19,7 @@ $available_rooms = mysqli_real_escape_string($link, $_REQUEST['available_rooms']
 $contact = mysqli_real_escape_string($link, $_REQUEST['contact']);
 
 // Perform query to insert place details
-$sql = "INSERT INTO places (id, title, description, address, lat, lng, price, available_rooms, contact) VALUES (NULL, '$title', '$description', '$address', '$lat', '$lng', '$price', '$available_rooms', '$contact')";
+$sql = "INSERT INTO places (id, title, description, address, lat, lng, price, available_rooms, contact, UserID) VALUES (NULL, '$title', '$description', '$address', '$lat', '$lng', '$price', '$available_rooms', '$contact', '$id')";
 
 // Return status
 if (mysqli_query($link, $sql)) {

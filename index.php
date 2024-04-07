@@ -72,7 +72,7 @@ if ($db->dbConnect()) {
 
                 <div class="tab-pane fade show active pt-3 pb-3" id="nav-edit" role="tabpanel" aria-labelledby="nav-edit-tab">
                 <?php if ($admin_access === true || $landlord_access === true) { ?>
-                  <h2>Modify Your Location:</h2>
+                  <h2>Your Locations:</h2>
                   <?php } ?>
                   <div id="listPlaces"></div>
                 </div>
