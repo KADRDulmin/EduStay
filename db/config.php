@@ -2,7 +2,7 @@
 /* Database credentials */
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', 'mysql');
 define('DB_NAME', 'edustay');
  
 /* Attempt to connect to MySQL database */
