@@ -4,28 +4,16 @@ session_start();
 ob_start();
 require "functions/process.php";
 
-
-// Check if the user is not logged in, redirect to login.php
-if (!isset($_SESSION['UserID'])) {
-  header("Location: login.php");
-  exit();
-}
 // Get the UserID from $_SESSION['UserID']
-$id = $_SESSION['UserID'];
-$db = new Database();
 
-if ($db->dbConnect()) {
 
-  $admin_access = $db->admin_access($id);
-  $landlord_access = $db->landlord_access($id);
-  $warden_access = $db->warden_access($id);
-  $student_access = $db->student_access($id);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-<?php include('header.php'); ?>
+    <?php include('header.php'); ?>
     <br>
     <h1>WELCOME TO <br><span style="color: rgba(59, 181, 75, 1);">GREEN</span> ACCOMMODATION</h1>
 
@@ -39,6 +27,17 @@ if ($db->dbConnect()) {
 <body>
 
     <div class="sign-page">
+
+        <div class="hide" style="display: none;"><?php
+                                                $db = new Database();
+
+                                                if ($db->dbConnect()) {
+
+                                                    $admin_access = $db->admin_access($id);
+                                                    $landlord_access = $db->landlord_access($id);
+                                                    $warden_access = $db->warden_access($id);
+                                                    $student_access = $db->student_access($id);
+                                                    $id = $_SESSION['UserID']; ?></div>
 
         <div class="form">
             <div class="logo">
@@ -58,21 +57,21 @@ if ($db->dbConnect()) {
                     <div class="role_select">
                         <select name="role" class="form-control" id="validationCustom05" required>
                             <option selected disabled value="">Select Role:</option>
-                                              <!-- ACCESS CONTROL -->
-                  <?php if ($admin_access === true) { ?>
-                            <option value="student">Student</option>
-                            <option value="landlord">Landlord</option>
-                            <option value="warden">Warden</option>
-                            <option value="admin">Admin</option>
+                            <!-- ACCESS CONTROL -->
+                            <?php if ($admin_access === true) { ?>
+                                <option value="student">Student</option>
+                                <option value="landlord">Landlord</option>
+                                <option value="warden">Warden</option>
+                                <option value="admin">Admin</option>
                             <?php } ?>
                             <?php if ($warden_access === true || $landlord_access === true || $student_access === true) { ?>
-                            <option value="student">Student</option>
-                            <option value="landlord">Landlord</option>
+                                <option value="student">Student</option>
+                                <option value="landlord">Landlord</option>
+                            <?php } else { ?>
+                                <option value="student">Student</option>
+                                <option value="landlord">Landlord</option>
                             <?php } ?>
-                            <?php if ($warden_access === false && $landlord_access === false && $student_access === false && $admin_access === false) { ?>
-                            <option value="student">Student</option>
-                            <option value="landlord">Landlord</option>
-                            <?php } ?>
+
                         </select>
                     </div>
                 </div>
@@ -81,23 +80,23 @@ if ($db->dbConnect()) {
                 <button>Add New User</button>
                 <br>
                 <?php
-                        if (isset($_POST['role'], $_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['password'])) {
-                            if (!empty($_POST['role'] && $_POST['firstname']) && !empty($_POST['lastname']) && !empty($_POST['email']) && !empty($_POST['password'])) {
-                                if ($db->signUp($_POST['role'], $_POST['email'], $_POST['password'], $_POST['firstname'], $_POST['lastname'])) {
-                                    echo "Sign Up Success";
-                                    header("Location: login.php");
-                                    exit; // Terminate script after redirect
-                                } else {
-                                    echo "Sign up Failed";
-                                }
-                            } else {
-                                echo "All fields are required";
-                            }
-                        } else {
-                            echo "All fields are required";
-                        }
+                                                    if (isset($_POST['role'], $_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['password'])) {
+                                                        if (!empty($_POST['role'] && $_POST['firstname']) && !empty($_POST['lastname']) && !empty($_POST['email']) && !empty($_POST['password'])) {
+                                                            if ($db->signUp($_POST['role'], $_POST['email'], $_POST['password'], $_POST['firstname'], $_POST['lastname'])) {
+                                                                echo "Sign Up Success";
+                                                                header("Location: login.php");
+                                                                exit; // Terminate script after redirect
+                                                            } else {
+                                                                echo "Sign up Failed";
+                                                            }
+                                                        } else {
+                                                            echo "All fields are required";
+                                                        }
+                                                    } else {
+                                                        echo "All fields are required";
+                                                    }
 
-                        ?>
+                ?>
                 <br>
 
             </form>
@@ -109,6 +108,6 @@ if ($db->dbConnect()) {
 
 </html>
 <?php
-    /* Close connection */
-}
+                                                    /* Close connection */
+                                                }
 ?>

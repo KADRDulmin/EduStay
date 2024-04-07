@@ -22,7 +22,7 @@ $ID = $_SESSION['UserID'];
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="This is a web to help the new students of NSBM to find accommodation around the university under the guidance of the warden. ">
     <meta name="author" content="Group DE Project">
-    <link rel="icon" href="../../../../favicon.ico">
+    <link rel="icon" href="images/favicon.ico">
 
   <title>Book a Room - Edustay</title>
 
