@@ -13,7 +13,7 @@
 
 <body>
   <header>
-    <a href="#" class="header-logo">EduStay</a>
+    <a href="index.php" class="header-logo">EduStay</a>
     <div class="menu-toggle"></div>
     <nav>
       <ul>
