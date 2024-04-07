@@ -18,6 +18,8 @@ if ($db->dbConnect()) {
 
   $admin_access = $db->admin_access($id);
   $landlord_access = $db->landlord_access($id);
+  $warden_access = $db->warden_access($id);
+  $student_access = $db->student_access($id);
 ?>
 
   <!doctype html>
@@ -26,8 +28,8 @@ if ($db->dbConnect()) {
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Google Map CRUD">
-    <meta name="author" content="Mikael Myhrberg">
+    <meta name="description" content="This is a web to help the new students of NSBM to find accommodation around the university under the guidance of the warden. ">
+    <meta name="author" content="Group DE Project">
     <link rel="icon" href="../../../../favicon.ico">
 
     <title>Book a Room - Edustay</title>
@@ -55,6 +57,7 @@ if ($db->dbConnect()) {
               <nav>
                 <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                   <a class="nav-item nav-link active" id="nav-edit-tab" data-toggle="tab" href="#nav-edit" role="tab" aria-controls="nav-edit" aria-selected="true" onclick="loadAjax('edit')">Modify Location</a>
+                  
                   <!-- ACCESS CONTROL -->
                   <?php if ($admin_access === true || $landlord_access === true) { ?>
                     <a class="nav-item nav-link" id="nav-new-tab" data-toggle="tab" href="#nav-new" role="tab" aria-controls="nav-new" aria-selected="false" onclick="loadAjax('new')">Add Location</a>
