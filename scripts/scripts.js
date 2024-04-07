@@ -84,7 +84,7 @@ for (var i = 0; i < locationsFromDB.length; i++) {
       '</button>' +
       '</div>' +
       '</div>' +
-      '<h4 style="text-align: center;">' + locationsFromDB[i].title + '</h4>' +
+      '<h4 style="text-align: center; color: black;">' + locationsFromDB[i].title + '</h4>' +
       '<p>Price: ' + locationsFromDB[i].price + '</p>' +
       '<p>Available Rooms: ' + locationsFromDB[i].available_rooms + '</p>' +
       '<p>Contact: <a href="tel:' + locationsFromDB[i].contact + '">' + locationsFromDB[i].contact + '</a></p>';

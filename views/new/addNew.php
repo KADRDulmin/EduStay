@@ -24,7 +24,7 @@ if (mysqli_query($link, $sql)) {
     {
         if ($_FILES[$fieldName]['error'] === UPLOAD_ERR_OK) {
             $tmpName = $_FILES[$fieldName]['tmp_name'];
-            $imageData = file_get_contents($tmpName);
+            
 
             // Move the uploaded image to a folder
             $file_name = $_FILES[$fieldName]['name'];

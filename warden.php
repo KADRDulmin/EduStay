@@ -1,3 +1,11 @@
+<?php
+require "functions/process.php";
+
+$db = new DataBase();
+if ($db->dbConnect()) {
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,21 +30,34 @@
             
         </div>
         <br>
-         <form class="register-form">
-            <input type="text" placeholder="Full Name"/>
-            <input type="text" placeholder="Last Name"/>
-            <input type="text" placeholder="email address"/>
-            <input type="text" placeholder="id"/>
-            
-        </form>
-        <form class="login-form">
-            <input type="text" placeholder="Full Name"/>
-            <input type="text" placeholder="Last Name"/>
-            <input type="text" placeholder="Email"/>
-            <input type="text" placeholder="Staff Id"/>
-            
-            <button>Add New User</button>
-            <br>
+        <form class="register-form" name="Login" action="" method="POST">
+                    <input type="text" placeholder="First Name" name="firstname" />
+                    <input type="text" placeholder="Last Name" name="lastname" />
+                    <input type="email" placeholder="Email" name="email" />
+                    <input type="password" placeholder="Password" name="password" />
+                    <button type="submit">Add New Warden</button>
+                    <br>
+            <div class="errortext">
+
+<?php
+if (isset($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['password'])) {
+    if (!empty($_POST['firstname']) && !empty($_POST['lastname']) && !empty($_POST['email']) && !empty($_POST['password'])) {
+        if ($db->signUp("warden", $_POST['email'], $_POST['password'], $_POST['firstname'], $_POST['lastname'])) {
+            echo "Sign Up Success";
+            header("Location: login.php");
+            exit; // Terminate script after redirect
+        } else {
+            echo "Sign up Failed";
+        }
+    } else {
+        echo "All fields are required";
+    }
+} else {
+    echo "All fields are required";
+}
+
+?>
+</div>
             <br>
             
         </form>
@@ -45,3 +66,7 @@
 
 </body>
 </html>
+<?php
+/* Close connection */
+}
+?>

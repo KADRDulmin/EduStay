@@ -60,17 +60,16 @@
 
    <?php include('footer.php'); ?>
 
-    <!-- Bootstrap core JavaScript and other scripts
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+    <!--JavaScripts-->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js" integrity="sha256-yNbKY1y6h2rbVcQtf0b8lq4a+xpktyFc3pSYoGAY1qQ=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
-    <!-- Custom script file -->
+
     <script src="scripts/scripts.js"></script>
+    
     <!-- Google Maps JS API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBleZ4eth9X_mKyb88UqQqYpIJwm05k-Iw"></script>    
 </body>
