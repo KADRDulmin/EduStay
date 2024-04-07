@@ -23,10 +23,7 @@ if ($result = mysqli_query($link, $sql)) {
             echo "<td class='col-1'>" . $row['id'] . "</td>";
             echo "<td class='col-xs-6 col-sm-4 col-md-3 col-lg-3'>" . $row['title'] . "</td>";
             echo "<td class='d-none d-sm-block col-sm-4 col-md-5 col-lg-5 text-truncate'>" . $row['description'] . "</td>";
-
-            // Parameters for update function
             $parameters = $row['id'] . ",\"" . $row['title'] . "\",\"" . $row['description'] . "\",\"" . $row['price'] . "\",\"" . $row['available_rooms'] . "\",\"" . $row['lat'] . "\",\"" . $row['lng'] . "\"";
-
             echo "<td class='col-xs-5 col-sm-3 col-md-3 col-lg-3 text-right'>
                             <button class='btn btn-link btn-sm' data-toggle='collapse' data-target='#infoRow" . $row['id'] . "' aria-expanded='false' aria-controls='infoRow" . $row['id'] . "'>
                                 <i class='fas fa-info-circle'></i>
@@ -39,17 +36,27 @@ if ($result = mysqli_query($link, $sql)) {
                             </button>
                         </td>";
             echo "</tr>";
-            // Place data display row
-            echo "<tr class='table-info collapse' id='infoRow" . $row['id'] . "'>";
-            echo "<td colspan='4'>";
-            echo "<div class='row'>";
-            echo "<div class='col-10'>";
-            echo "<div class='col-12'>Rs. <span>" . $row['price'] . " </span></div>";
-            echo "<div class='col-12'><i class='fa fa-bed' title='rooms'></i> &nbsp <span>" . $row['available_rooms'] . "</span></div>";
-            echo "<div class='col-12'><i class='fas fa-map-marker-alt mr-2' title='coordinates'></i><span>" . $row['lat'] . " , " . $row['lng'] . "</span></div>";
-            echo "<div class='col-12 d-block d-sm-none'><i class='fas fa-book mr-2'></i><span>" . $row['description'] . "</span></div>";
 
-            // Fetch and display images for the place ID in a carousel
+            // Place data display row
+            echo "<tr class='collapse' id='infoRow" . $row['id'] . "'>";
+            echo "<td colspan='4'>";
+            echo "<div class='card'>";
+            echo "<div class='card-body'>";
+
+            // Title
+            echo "<h5 class='card-title'>" . $row['title'] . "</h5>";
+
+            // Price and Rooms
+            echo "<p class='card-text'><strong>Price:</strong> Rs. " . $row['price'] . "</p>";
+            echo "<p class='card-text'><strong>Available Rooms:</strong> " . $row['available_rooms'] . "</p>";
+
+            // Location
+            echo "<p class='card-text'><strong>Location:</strong> " . $row['lat'] . ", " . $row['lng'] . "</p>";
+
+            // Description for smaller devices
+            echo "<p class='card-text d-block d-sm-none'><strong>Description:</strong> " . $row['description'] . "</p>";
+
+            // Images Carousel
             $placeId = $row['id'];
             $sqlImages = "SELECT image_path FROM images WHERE place_id = $placeId";
             if ($imageResult = mysqli_query($link, $sqlImages)) {
@@ -58,41 +65,36 @@ if ($result = mysqli_query($link, $sql)) {
                     $images[] = $imageRow['image_path'];
                 }
 
-                echo "<div class='col-12'>";
-                echo "<div id='carouselExampleControls$placeId' class='carousel slide' data-ride='carousel'>";
-                echo "<div class='carousel-inner'>";
-                foreach ($images as $key => $image) {
-                    $activeClass = ($key == 0) ? 'active' : '';
-                    echo "<div class='carousel-item $activeClass' style='height: 500px; max-width: auto;'>";
-                    echo "<img class='d-block w-100' src='images/$image' alt='Slide' style='display: block; margin: auto; width: 60%;'>";
+                if (!empty($images)) {
+                    echo "<div id='carouselExampleControls$placeId' class='carousel slide' data-ride='carousel'>";
+                    echo "<div class='carousel-inner'>";
+                    foreach ($images as $key => $image) {
+                        $activeClass = ($key == 0) ? 'active' : '';
+                        echo "<div class='carousel-item $activeClass'>";
+                        echo "<img class='d-block w-100' src='images/$image' alt='Slide'>";
+                        echo "</div>";
+                    }
                     echo "</div>";
+                    echo "<a class='carousel-control-prev' href='#carouselExampleControls$placeId' role='button' data-slide='prev'>";
+                    echo "<span class='carousel-control-prev-icon' aria-hidden='true'></span>";
+                    echo "<span class='sr-only'>Previous</span>";
+                    echo "</a>";
+                    echo "<a class='carousel-control-next' href='#carouselExampleControls$placeId' role='button' data-slide='next'>";
+                    echo "<span class='carousel-control-next-icon' aria-hidden='true'></span>";
+                    echo "<span class='sr-only'>Next</span>";
+                    echo "</a>";
+                    echo "</div>"; // Close carousel
                 }
-                echo "</div>";
-                echo "<a class='carousel-control-prev' href='#carouselExampleControls$placeId' role='button' data-slide='prev'>";
-                echo "<span class='carousel-control-prev-icon' aria-hidden='true'></span>";
-                echo "<span class='sr-only'>Previous</span>";
-                echo "</a>";
-                echo "<a class='carousel-control-next' href='#carouselExampleControls$placeId' role='button' data-slide='next'>";
-                echo "<span class='carousel-control-next-icon' aria-hidden='true'></span>";
-                echo "<span class='sr-only'>Next</span>";
-                echo "</a>";
-                echo "</div>"; // Close carousel
-                echo "</div>"; // Close col-12
             } // Close if for image results
 
-            // Add Accept and Reject buttons here
-            echo "<div class='col-12 mt-3 text-right'>"; // Use text-right for alignment to the right
-            echo "<button class='btn btn-success btn-sm' onclick='acceptPlace(" . $row['id'] . ")'>Accept</button> "; // Space for a small gap between buttons
-            echo "<button class='btn btn-danger btn-sm' onclick='rejectPlace(" . $row['id'] . ")'>Reject</button>";
-            echo "</div>"; // Close col-12 for buttons
+            // Action Buttons
+            echo "<div class='text-right mt-3'>";
+            echo "<button class='btn btn-success' onclick='acceptPlace(" . $row['id'] . ")'>Accept</button> ";
+            echo "<button class='btn btn-danger' onclick='rejectPlace(" . $row['id'] . ")'>Reject</button>";
+            echo "</div>"; // Close action buttons div
 
-            echo "</div>"; // Close col-10
-            echo "<div class='col-2'>";
-            echo "<button class='btn btn-light btn-sm mr-3 float-right' data-toggle='collapse' data-target='#infoRow" . $row['id'] . "' aria-expanded='false' aria-controls='infoRow" . $row['id'] . "'>";
-            echo "<i class='fas fa-chevron-up'></i>";
-            echo "</button>";
-            echo "</div>"; // Close col-2
-            echo "</div>"; // Close row
+            echo "</div>"; // Close card-body
+            echo "</div>"; // Close card
             echo "</td>"; // Close td colspan
             echo "</tr>"; // Close tr for info row
 
