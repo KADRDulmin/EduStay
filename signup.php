@@ -1,57 +1,114 @@
+<?php
+// Start a session
+session_start();
+ob_start();
+require "functions/process.php";
+
+
+// Check if the user is not logged in, redirect to login.php
+if (!isset($_SESSION['UserID'])) {
+  header("Location: login.php");
+  exit();
+}
+// Get the UserID from $_SESSION['UserID']
+$id = $_SESSION['UserID'];
+$db = new Database();
+
+if ($db->dbConnect()) {
+
+  $admin_access = $db->admin_access($id);
+  $landlord_access = $db->landlord_access($id);
+  $warden_access = $db->warden_access($id);
+  $student_access = $db->student_access($id);
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <?php include('header.php'); ?>
     <br>
     <h1>WELCOME TO <br><span style="color: rgba(59, 181, 75, 1);">GREEN</span> ACCOMMODATION</h1>
 
     <meta charset="UTF-8">
-    <title>Signup - EduStay</title>
-    <link rel="stylesheet" href="css/signup.css">
+    <title>Modern Flat Design Login Form Example</title>
+    <link rel="stylesheet" href="css/webmaster.css">
     <style>
-        </style>
+    </style>
 </head>
+
 <body>
 
+    <div class="sign-page">
 
-  <div class="sign-page">
-  
-    <div class="form">
-        <div class="logo">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx6QtxtngZsxa6YQsa80rQV3FJkIAxyuz1_xTH9axUi1pEZe0-MTmpKfNMHGxwNJgNsvo&usqp=CAU" alt="Logo">
-        </div>
-       
-        <div class="social-sign">
-            
-        </div>
-        <br>
-         <form class="register-form">
-            <input type="text" placeholder="Full Name"/>
-            <input type="text" placeholder="Last Name"/>
-            <input type="password" placeholder="password"/>
-            <input type="text" placeholder="email address"/>
-            <input type="pwd" placeholder="confirm pw"/>
-            
-        </form>
-        <form class="login-form">
-            <input type="text" placeholder="Full Name"/>
-            <input type="text" placeholder="Last Name"/>
-            <input type="text" placeholder="Email"/>
-            <input type="password" placeholder="Password"/>
-            <input type="pwd" placeholder="Confirm Password"/>
-            <select name="login-as">
-                <option value="student">Login as Student</option>
-                <option value="landowner">Login as Land Lord</option>
-                <option value="landowner">Login as Warden</option>
-                <option value="admin">Login as Admin</option>
-            </select>
-            <button>Sign Up</button>
+        <div class="form">
+            <div class="logo">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx6QtxtngZsxa6YQsa80rQV3FJkIAxyuz1_xTH9axUi1pEZe0-MTmpKfNMHGxwNJgNsvo&usqp=CAU" alt="Logo">
+            </div>
+
+            <div class="social-sign">
+
+            </div>
             <br>
-            <br>
-            
-        </form>
+            <form class="register-form" name="Login" action="" method="POST">
+                <input type="text" placeholder="First Name" name="firstname" />
+                <input type="text" placeholder="Last Name" name="lastname" />
+                <input type="email" placeholder="Email" name="email" />
+                <input type="password" placeholder="Password" name="password" />
+                <div class="form-select">
+                    <div class="role_select">
+                        <select name="role" class="form-control" id="validationCustom05" required>
+                            <option selected disabled value="">Select Role:</option>
+                                              <!-- ACCESS CONTROL -->
+                  <?php if ($admin_access === true) { ?>
+                            <option value="student">Student</option>
+                            <option value="landlord">Landlord</option>
+                            <option value="warden">Warden</option>
+                            <option value="admin">Admin</option>
+                            <?php } ?>
+                            <?php if ($warden_access === true || $landlord_access === true || $student_access === true) { ?>
+                            <option value="student">Student</option>
+                            <option value="landlord">Landlord</option>
+                            <?php } ?>
+                            <?php if ($warden_access === false && $landlord_access === false && $student_access === false && $admin_access === false) { ?>
+                            <option value="student">Student</option>
+                            <option value="landlord">Landlord</option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+
+
+                <button>Add New User</button>
+                <br>
+                <?php
+                        if (isset($_POST['role'], $_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['password'])) {
+                            if (!empty($_POST['role'] && $_POST['firstname']) && !empty($_POST['lastname']) && !empty($_POST['email']) && !empty($_POST['password'])) {
+                                if ($db->signUp($_POST['role'], $_POST['email'], $_POST['password'], $_POST['firstname'], $_POST['lastname'])) {
+                                    echo "Sign Up Success";
+                                    header("Location: login.php");
+                                    exit; // Terminate script after redirect
+                                } else {
+                                    echo "Sign up Failed";
+                                }
+                            } else {
+                                echo "All fields are required";
+                            }
+                        } else {
+                            echo "All fields are required";
+                        }
+
+                        ?>
+                <br>
+
+            </form>
+        </div>
     </div>
-</div>
-<?php include('footer.php'); ?>
+    <?php include('footer.php'); ?>
+
 </body>
+
 </html>
+<?php
+    /* Close connection */
+}
+?>
