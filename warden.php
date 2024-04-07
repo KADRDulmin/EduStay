@@ -19,6 +19,7 @@ if ($db->dbConnect()) {
         </style>
 </head>
 <body>
+<?php include('header.php'); ?>
   <div class="sign-page">
   
     <div class="form">
@@ -63,6 +64,7 @@ if (isset($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['pass
         </form>
     </div>
 </div>
+<?php include('footer.php'); ?>
 
 </body>
 </html>

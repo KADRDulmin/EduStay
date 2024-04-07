@@ -9,6 +9,7 @@ if ($db->dbConnect()) {
 <html lang="en">
 
 <head>
+<?php include('header.php'); ?>
     <br>
     <h1>WELCOME TO <br><span style="color: rgba(59, 181, 75, 1);">GREEN</span> ACCOMMODATION</h1>
 
@@ -20,6 +21,7 @@ if ($db->dbConnect()) {
 </head>
 
 <body>
+
     <div class="sign-page">
 
         <div class="form">
@@ -74,6 +76,7 @@ if ($db->dbConnect()) {
             </form>
         </div>
     </div>
+    <?php include('footer.php'); ?>
 
 </body>
 

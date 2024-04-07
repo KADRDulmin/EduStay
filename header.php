@@ -21,6 +21,7 @@
         <li><a href="index.php">Home</a></li>
         <li><a href="about.php">About</a></li>   
         <li><a href="contact.php">Contact</a></li>
+        <li><a href="webmaster.php">Create User</a></li>
         <li><a href="login.php" class="login-button">Login</a></li>
         <li><form method="post" action="" style="margin: 8px 0 0 0;">
                 <input type="submit" class="logout-button" name="logout" value="Logout">
