@@ -1,5 +1,5 @@
 <?php
-
+require "functions/process.php";
 
 ?>
 <!DOCTYPE html>
