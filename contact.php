@@ -30,6 +30,7 @@ if ($db->dbConnect()) {
     <link rel="stylesheet" href="css/contact.css">
 </head>
 <body>
+<?php include('header.php'); ?>
 <div class="background">
     <div class="container">
         <div class="screen">
@@ -77,6 +78,7 @@ if ($db->dbConnect()) {
     </a>
 </div>
 </div>
+<?php include('footer.php'); ?>
 </body>
 </html>
 <?php
