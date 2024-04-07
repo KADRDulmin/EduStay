@@ -42,7 +42,7 @@ if ($result = mysqli_query($link, $sql)) {
             echo "<p class='card-text'><strong>Location:</strong> " . $row['lat'] . ", " . $row['lng'] . "</p>";
             echo "<p class='card-text d-block d-md-none'><strong>Description:</strong> " . $row['description'] . "</p>";
 
-            // Carousel for images (if available)
+            // Carousel for images
             $placeId = $row['id'];
             $sqlImages = "SELECT image_path FROM images WHERE place_id = $placeId";
             if ($imageResult = mysqli_query($link, $sqlImages)) {
@@ -70,6 +70,7 @@ if ($result = mysqli_query($link, $sql)) {
                     echo "</a>";
                     echo "</div>"; // Close carousel
                 }
+                mysqli_free_result($imageResult);
             } // Close if for image results
 
             // Accept and Reject buttons
@@ -103,5 +104,48 @@ if ($result = mysqli_query($link, $sql)) {
 } else {
     echo "ERROR: Unable to execute $sql. " . mysqli_error($link);
 }
+
+// Query to select available places for the new section
+$sqlAvailable = "SELECT id, title, price, available_rooms, (SELECT image_path FROM images WHERE place_id = places.id LIMIT 1) AS image_path FROM places WHERE available_rooms > 0 ORDER BY id ASC";
+
+if ($resultAvailable = mysqli_query($link, $sqlAvailable)) {
+    if (mysqli_num_rows($resultAvailable) > 0) {
+        echo "<div class='available-rooms-section mt-5'>";
+        echo "<h2>Available Rooms</h2>";
+        echo "<div class='list-group'>";
+
+        while ($rowAvailable = mysqli_fetch_array($resultAvailable)) {
+            echo "<div class='list-group-item'>";
+            echo "<div class='row align-items-center'>";
+            echo "<div class='col-md-2'>";
+            if (!empty($rowAvailable['image_path'])) {
+                echo "<img src='images/" . htmlspecialchars($rowAvailable['image_path']) . "' class='img-fluid' alt='" . htmlspecialchars($rowAvailable['title']) . "'>";
+            } else {
+                echo "<img src='images/NSBM.png' class='img-fluid' alt='Default Image'>"; // Default image if none is available
+            }
+            echo "</div>"; // Close image column
+            echo "<div class='col-md-8'>";
+            echo "<h5 class='mb-1'>" . htmlspecialchars($rowAvailable['title']) . "</h5>";
+            echo "<p class='mb-1'><strong>Price:</strong> Rs. " . htmlspecialchars($rowAvailable['price']) . "</p>";
+            echo "<p class='mb-0'><strong>Available Rooms:</strong> " . htmlspecialchars($rowAvailable['available_rooms']) . "</p>";
+            echo "</div>"; // Close info column
+            echo "<div class='col-md-2 text-right'>";
+            echo "<button class='btn btn-primary' onclick='bookNow(" . $rowAvailable['id'] . ")'>Book Now</button>";
+            echo "</div>"; // Close book button column
+            echo "</div>"; // Close row
+            echo "</div>"; // Close list group item
+        }
+
+        echo "</div>"; // Close list group
+        echo "</div>"; // Close available-rooms-section
+        mysqli_free_result($resultAvailable);
+    } else {
+        echo "<div class='alert alert-info' role='alert'>There are no available rooms at the moment.</div>";
+    }
+} else {
+    echo "ERROR: Unable to execute $sqlAvailable. " . mysqli_error($link);
+}
+
+// Close the database connection
 mysqli_close($link);
 ?>
