@@ -5,58 +5,44 @@ require_once '../../db/config.php';
 $sql = "SELECT * FROM places ORDER BY id ASC";
 if ($result = mysqli_query($link, $sql)) {
     if (mysqli_num_rows($result) > 0) {
-        // Print table
-        echo "<table class='table table-hover table-sm'>";
-        echo "<thead class='thead-light'>";
-        echo "<tr class='d-flex'>";
-        echo "<th class='col-1'>#</th>";
-        echo "<th class='col-xs-6 col-sm-4 col-md-3 col-lg-3'>Title</th>";
-        echo "<th class='d-none d-sm-block col-sm-4 col-md-5 col-lg-5'>Description</th>";
-        echo "<th class='col-xs-5 col-sm-3 col-md-3 col-lg-3 text-right'><span class='mr-2'>Actions</span></th>";
+        // Print table with responsive wrapper
+        echo "<div class='table-responsive'>";
+        echo "<table class='table table-hover'>";
+        echo "<thead style='background-color: rgba(12, 110, 223, 0.726);'>";
+        echo "<tr>";
+        echo "<th scope='col'>#</th>";
+        echo "<th scope='col'>Title</th>";
+        echo "<th scope='col' class='d-none d-md-table-cell'>Description</th>";
+        echo "<th scope='col' class='text-right'>Actions</th>";
         echo "</tr>";
         echo "</thead>";
         echo "<tbody>";
 
         // Fetch and display places in a loop
         while ($row = mysqli_fetch_array($result)) {
-            echo "<tr class='d-flex'>";
-            echo "<td class='col-1'>" . $row['id'] . "</td>";
-            echo "<td class='col-xs-6 col-sm-4 col-md-3 col-lg-3'>" . $row['title'] . "</td>";
-            echo "<td class='d-none d-sm-block col-sm-4 col-md-5 col-lg-5 text-truncate'>" . $row['description'] . "</td>";
+            echo "<tr>";
+            echo "<th scope='row'>" . $row['id'] . "</th>";
+            echo "<td>" . $row['title'] . "</td>";
+            echo "<td class='d-none d-md-table-cell text-truncate' style='max-width: 250px;'>" . $row['description'] . "</td>";
             $parameters = $row['id'] . ",\"" . $row['title'] . "\",\"" . $row['description'] . "\",\"" . $row['price'] . "\",\"" . $row['available_rooms'] . "\",\"" . $row['lat'] . "\",\"" . $row['lng'] . "\"";
-            echo "<td class='col-xs-5 col-sm-3 col-md-3 col-lg-3 text-right'>
-                            <button class='btn btn-link btn-sm' data-toggle='collapse' data-target='#infoRow" . $row['id'] . "' aria-expanded='false' aria-controls='infoRow" . $row['id'] . "'>
-                                <i class='fas fa-info-circle'></i>
-                            </button> | 
-                            <button class='btn btn-link btn-sm' onclick='openEditForm(" . $parameters . ")'>
-                                <i class='far fa-edit'></i>
-                            </button> | 
-                            <button class='btn btn-link btn-sm' data-toggle='collapse' data-target='#deletePromptRow" . $row['id'] . "' aria-expanded='false' aria-controls='deletePromptRow" . $row['id'] . "'>
-                                <i class='far fa-trash-alt'></i>
-                            </button>
-                        </td>";
+            echo "<td class='text-right'>";
+            echo "<button class='btn btn-info btn-sm mr-1' data-toggle='collapse' data-target='#infoRow" . $row['id'] . "' aria-expanded='false' aria-controls='infoRow" . $row['id'] . "'><i class='fas fa-info-circle'></i></button>";
+            echo "<button class='btn btn-primary btn-sm mr-1' onclick='openEditForm(" . $parameters . ")'><i class='fas fa-edit'></i></button>";
+            echo "<button class='btn btn-danger btn-sm' data-toggle='collapse' data-target='#deletePromptRow" . $row['id'] . "' aria-expanded='false' aria-controls='deletePromptRow" . $row['id'] . "'><i class='fas fa-trash-alt'></i></button>";
+            echo "</td>";
             echo "</tr>";
 
-            // Place data display row
+            // Additional details for each place
             echo "<tr class='collapse' id='infoRow" . $row['id'] . "'>";
             echo "<td colspan='4'>";
-            echo "<div class='card'>";
-            echo "<div class='card-body'>";
-
-            // Title
+            echo "<div class='card card-body'>";
             echo "<h5 class='card-title'>" . $row['title'] . "</h5>";
-
-            // Price and Rooms
             echo "<p class='card-text'><strong>Price:</strong> Rs. " . $row['price'] . "</p>";
             echo "<p class='card-text'><strong>Available Rooms:</strong> " . $row['available_rooms'] . "</p>";
-
-            // Location
             echo "<p class='card-text'><strong>Location:</strong> " . $row['lat'] . ", " . $row['lng'] . "</p>";
+            echo "<p class='card-text d-block d-md-none'><strong>Description:</strong> " . $row['description'] . "</p>";
 
-            // Description for smaller devices
-            echo "<p class='card-text d-block d-sm-none'><strong>Description:</strong> " . $row['description'] . "</p>";
-
-            // Images Carousel
+            // Carousel for images (if available)
             $placeId = $row['id'];
             $sqlImages = "SELECT image_path FROM images WHERE place_id = $placeId";
             if ($imageResult = mysqli_query($link, $sqlImages)) {
@@ -64,14 +50,13 @@ if ($result = mysqli_query($link, $sql)) {
                 while ($imageRow = mysqli_fetch_assoc($imageResult)) {
                     $images[] = $imageRow['image_path'];
                 }
-
                 if (!empty($images)) {
                     echo "<div id='carouselExampleControls$placeId' class='carousel slide' data-ride='carousel'>";
                     echo "<div class='carousel-inner'>";
                     foreach ($images as $key => $image) {
                         $activeClass = ($key == 0) ? 'active' : '';
                         echo "<div class='carousel-item $activeClass'>";
-                        echo "<img class='d-block w-100' src='images/$image' alt='Slide'>";
+                        echo "<img class='d-block w-100' src='images/$image' alt='Image'>";
                         echo "</div>";
                     }
                     echo "</div>";
@@ -87,7 +72,7 @@ if ($result = mysqli_query($link, $sql)) {
                 }
             } // Close if for image results
 
-            // Action Buttons
+            // Accept and Reject buttons
             echo "<div class='text-right mt-3'>";
             echo "<button class='btn btn-success' onclick='acceptPlace(" . $row['id'] . ")'>Accept</button> ";
             echo "<button class='btn btn-danger' onclick='rejectPlace(" . $row['id'] . ")'>Reject</button>";
@@ -110,6 +95,7 @@ if ($result = mysqli_query($link, $sql)) {
 
         echo "</tbody>";
         echo "</table>";
+        echo "</div>"; // Close responsive table div
         mysqli_free_result($result);
     } else {
         echo "<div class='alert alert-warning' role='alert'>No places were found in the database!</div>";
