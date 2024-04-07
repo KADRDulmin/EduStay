@@ -25,7 +25,7 @@ header{
 }
 .header-logo:hover{
   color: lightgreen;
-  transform: scale(1.225);
+  transform: scale(1.145);
   transition: 0.3s;
 }
 nav{

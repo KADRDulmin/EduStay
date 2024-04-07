@@ -3,3 +3,5 @@ db/config.php
 *.png
 db/config.php
 *.jpg
+functions/process.php
+db/config.php

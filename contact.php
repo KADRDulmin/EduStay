@@ -21,6 +21,7 @@
     </style>
 	</head>
 	<body>
+	<?php include('header.php'); ?>
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -100,7 +101,7 @@
 				        			<span class="fa fa-paper-plane"></span>
 				        		</div>
 				        		<div class="text pl-3">
-					            <p><span>Email:</span> <a href="mailto:info@yoursite.com">inquiries@nsbm.ac.lk</a></p>
+					            <p><span>Email:</span> <a href="mailto:info@yoursite.com">inquiries@edustay.nsbm.ac.lk</a></p>
 					          </div>
 				          </div>
 				        	
@@ -116,7 +117,7 @@
 		</div>
 	</section>
 
-
+	<?php include('footer.php'); ?>
 	</body>
 </html>
 
