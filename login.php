@@ -5,6 +5,13 @@ ob_start();
 session_start();
 require "functions/process.php";
 
+// Check if the user is already logged in
+if (isset($_SESSION['UserID'])) {
+    // If logged in, redirect to a dashboard or home page
+    header("Location: index.php");
+    exit();
+  }
+
 $db = new Database();
 
 if ($db->dbConnect()) {

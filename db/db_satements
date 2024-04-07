@@ -2,14 +2,16 @@ CREATE DATABASE edustay;
 
 CREATE TABLE Places (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    UserID INT,
     title VARCHAR(60) NOT NULL,
     contact VARCHAR(10) NOT NULL,
     description TEXT,
     address TEXT,
-    lat DECIMAL(11, 8) NOT NULL,
+	  lat DECIMAL(11, 8) NOT NULL,
     lng DECIMAL(11, 8) NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
-    available_rooms INT NOT NULL
+    available_rooms INT NOT NULL,
+    FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE
 );
 
 CREATE TABLE images (
@@ -17,4 +19,13 @@ CREATE TABLE images (
     place_id INT,
     image_path VARCHAR(255),
     FOREIGN KEY (place_id) REFERENCES places(id) ON DELETE CASCADE
+);
+
+CREATE TABLE Users (
+    UserID INT AUTO_INCREMENT PRIMARY KEY,
+    Email VARCHAR(255) UNIQUE,
+    Password VARCHAR(255),
+    FirstName VARCHAR(255),
+    LastName VARCHAR(255),
+    Role VARCHAR(255)
 );

@@ -3,7 +3,7 @@ class Database
 {
     private $host = 'localhost';
     private $username = 'root';
-    private $password = '';
+    private $password = 'mysql';
     private $database = 'edustay';
     public $conn;
 
@@ -75,6 +75,60 @@ class Database
         }
         return $login;
     }
+
+    // ADMIN ACCESS FUNCTION
+
+    public function admin_access($id)
+    {
+        // Escape inputs to prevent SQL injection
+        $id = mysqli_real_escape_string($this->conn, $id);
+    
+        // Retrieve user data from database
+        $sql = "SELECT * FROM Users WHERE UserID = '$id'";
+        $result = mysqli_query($this->conn, $sql);
+    
+        if (!$result || mysqli_num_rows($result) == 0) {
+            return "User not found"; // User ID does not exist in the database
+        }
+    
+        $row = mysqli_fetch_assoc($result);
+        $correctRole = 'admin';
+    
+        // Verify user role
+        if ($row['Role'] == $correctRole) {
+            return true; // User has admin access
+        }
+    
+        return "Insufficient privileges"; // User does not have admin access
+    }
+
+        // LANDLORD ACCESS FUNCTION
+
+        public function landlord_access($id)
+        {
+            // Escape inputs to prevent SQL injection
+            $id = mysqli_real_escape_string($this->conn, $id);
+        
+            // Retrieve user data from database
+            $sql = "SELECT * FROM Users WHERE UserID = '$id'";
+            $result = mysqli_query($this->conn, $sql);
+        
+            if (!$result || mysqli_num_rows($result) == 0) {
+                return "User not found"; // User ID does not exist in the database
+            }
+        
+            $row = mysqli_fetch_assoc($result);
+            $correctRole = 'landloard';
+        
+            // Verify user role
+            if ($row['Role'] == $correctRole) {
+                return true; // User has admin access
+            }
+        
+            return "Insufficient privileges"; // User does not have admin access
+        }
+
+        
 
     public function closeConnection()
     {

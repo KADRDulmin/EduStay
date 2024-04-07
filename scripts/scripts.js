@@ -12,11 +12,11 @@ var locationsFromDB = [];
 // AJAX content loading
 function loadAjax(page) {
   switch (page) {
-    case "new":
-      $("#addPlace").load("./views/new/addNew.html");
-      break;
     case "edit":
       $("#listPlaces").load("./views/edit/edit.html");
+      break;
+    case "new":
+      $("#addPlace").load("./views/new/addNew.html");
       break;
     default:
     // Do nothing basically
