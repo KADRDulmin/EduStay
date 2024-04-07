@@ -6,7 +6,7 @@
     <h1>WELCOME TO <br><span style="color: rgba(59, 181, 75, 1);">GREEN</span> ACCOMMODATION</h1>
 
     <meta charset="UTF-8">
-    <title>Signup</title>
+    <title>Signup - EduStay</title>
     <link rel="stylesheet" href="css/signup.css">
     <style>
         </style>

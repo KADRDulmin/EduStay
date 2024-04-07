@@ -11,7 +11,7 @@ if ($db->dbConnect()) {
 
     <head>
         <meta charset="UTF-8">
-        <title>Student register-form</title>
+        <title>Student Registration</title>
         <link rel="stylesheet" href="css/stureg.css">
     </head>
 
