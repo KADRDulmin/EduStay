@@ -38,12 +38,7 @@ if ($db->dbConnect()) {
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx6QtxtngZsxa6YQsa80rQV3FJkIAxyuz1_xTH9axUi1pEZe0-MTmpKfNMHGxwNJgNsvo&usqp=CAU" alt="Logo">
                 </div>
                 <div class="social-login">
-                    <button onclick="loginWithFacebook()" style="background-color: white; border: 1px solid black; color: black;">Login with Facebook</button>
-                    <br>
-                    <br>
-                    <button onclick="loginWithFacebook()" style="background-color: white; border: 1px solid black; color: black;">Login with University Email</button>
-                    <br>
-                    <br>
+                    
                 </div>
                 <div class="social-login">
                 </div>
