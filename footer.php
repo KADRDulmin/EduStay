@@ -15,8 +15,8 @@
             <div class="footer-columns">
                 <div class="footer-column">
                     <h3>About Us</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec sem id metus elementum aliquam.</p>
-                    <p>Fusce in nisl sit amet risus eleifend commodo. Sed vel ex eu lectus vestibulum efficitur.</p>
+                    <p>EduStay is not just a platform; it's a community builder that enhances the university experience for NSBM Green University students. EduStay invites landlords, the warden, and students to come together in a secure, efficient, and user-friendly environment, making the process of providing accommodation smoother than ever.</p>
+                    
                 </div>
                 <div class="footer-column">
                     <h3>Quick Links</h3>

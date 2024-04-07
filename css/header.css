@@ -25,7 +25,7 @@ header{
 }
 .header-logo:hover{
   color: lightgreen;
-  transform: scale(1.225);
+  transform: scale(1.145);
   transition: 0.3s;
 }
 nav{
@@ -57,11 +57,25 @@ nav ul li a{
   border-radius: 5px;
   color: white;
 }
+.logout-button{
+  background-color: red;
+  margin-bottom: 10px;
+  padding: 10px 10px 10px 10px;
+  margin-left: 10px;
+  border-radius: 5px;
+  color: white;
+}
 
 .login-button:hover{
   transform: scale(1.125);
   background-color: lightgreen;
   color: rgba(12, 110, 223, 0.726);
+}
+.logout-button:hover{
+  transform: scale(1.125);
+  background-color: lightgreen;
+  color: rgba(12, 110, 223, 0.726);
+  transition: 0.3s;
 }
 nav ul li a.active, nav ul li a:hover{
   background:lightgreen;
