@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/footer.css">
     <title>Footer with HTML, CSS, and JS</title>
+    
 </head>
 <body>
     <footer class="site-footer">
@@ -29,8 +30,8 @@
                 </div>
                 <div class="footer-column">
                     <h3>Contact Us</h3>
-                    <p>Address: 123 Street, City, Country</p>
-                    <p>Email: info@example.com</p>
+                    <p>&#xee8d; Mahenwaththa, Pitipana, Homagama, Sri Lanka</p>
+                    <p>&#9993; inquiries@edustay.nsbm.ac.lk</p>
                     <div class="social-icons">
                         <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>

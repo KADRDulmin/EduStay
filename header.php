@@ -17,9 +17,8 @@
     <div class="menu-toggle"></div>
     <nav>
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="index.php">Rooms</a></li>     
+        <li><a href="index.php">Home</a></li>
+        <li><a href="#">About</a></li>   
         <li><a href="#">Contact</a></li>
         <li><a href="login.php" class="login-button">Login</a></li>
 

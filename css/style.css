@@ -40,7 +40,8 @@ td {
 .dashboard-container{
   max-width: 1750px;
   margin-left: 4%;
-  margin-bottom: 20px;
+  margin-top: 70px;
+  margin-bottom: 70px;
   background-color: #FFFFFF;
   border-radius: 10px;
 }
