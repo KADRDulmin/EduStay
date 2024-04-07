@@ -21,6 +21,16 @@
         <li><a href="#">About</a></li>   
         <li><a href="#">Contact</a></li>
         <li><a href="login.php" class="login-button">Login</a></li>
+        <li><form method="post" action="" style="margin: 8px 0 0 0;">
+                <input type="submit" class="logout-button" name="logout" value="Logout">
+
+                <?php
+                if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['logout'])) {
+                    $database = new DataBase();
+                    $database->Logoutbutton();
+                }
+                ?>
+            </form></li>
 
       </ul>
     </nav>
