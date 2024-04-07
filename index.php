@@ -15,6 +15,9 @@ $id = $_SESSION['UserID'];
 $db = new Database();
 
 if ($db->dbConnect()) {
+
+  $admin_access = $db->admin_access($id);
+  $landlord_access = $db->landlord_access($id);
 ?>
 
   <!doctype html>
@@ -54,7 +57,6 @@ if ($db->dbConnect()) {
                   <a class="nav-item nav-link active" id="nav-edit-tab" data-toggle="tab" href="#nav-edit" role="tab" aria-controls="nav-edit" aria-selected="true" onclick="loadAjax('edit')">Modify Location</a>
                   <!-- ADMIN ACCESS CONTROL -->
                   <?php
-                  $admin_access = $db->admin_access($id);
                   if ($admin_access === true) {
                   ?>
                     <a class="nav-item nav-link" id="nav-new-tab" data-toggle="tab" href="#nav-new" role="tab" aria-controls="nav-new" aria-selected="false" onclick="loadAjax('new')">Add Location</a>
@@ -64,7 +66,6 @@ if ($db->dbConnect()) {
 
                   <!-- LANDLORD ACCESS CONTROL -->
                   <?php
-                  $landlord_access = $db->landlord_access($id);
                   if ($landlord_access === true) {
                   ?>
                     <a class="nav-item nav-link" id="nav-new-tab" data-toggle="tab" href="#nav-new" role="tab" aria-controls="nav-new" aria-selected="false" onclick="loadAjax('new')">Add Location</a>
@@ -87,7 +88,6 @@ if ($db->dbConnect()) {
 
                   <!-- ADMIN ACCESS CONTROL -->
                   <?php
-                  $admin_access = $db->admin_access($id);
                   if ($admin_access === true) {
                   ?>
                     <div id="addPlace"></div>
@@ -96,7 +96,6 @@ if ($db->dbConnect()) {
                   ?>
                   <!-- LANDLORD ACCESS CONTROL -->
                   <?php
-                  $landlord_access = $db->landlord_access($id);
                   if ($landlord_access === true) {
                   ?>
                     <div id="addPlace"></div>

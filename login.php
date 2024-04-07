@@ -13,7 +13,6 @@ if (isset($_SESSION['UserID'])) {
   }
 
 $db = new Database();
-
 if ($db->dbConnect()) {
 ?>
     <!DOCTYPE html>
