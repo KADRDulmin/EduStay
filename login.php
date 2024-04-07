@@ -39,11 +39,6 @@ if ($db->dbConnect()) {
                 </div>
                 <div class="social-login">
                     
-                    <br>
-                    <br>
-                    
-                    <br>
-                    <br>
                 </div>
                 <div class="social-login">
                 </div>
