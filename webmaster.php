@@ -14,7 +14,7 @@ if ($db->dbConnect()) {
     <h1>WELCOME TO <br><span style="color: rgba(59, 181, 75, 1);">GREEN</span> ACCOMMODATION</h1>
 
     <meta charset="UTF-8">
-    <title>Modern Flat Design Login Form Example</title>
+    <title>Web Master - EduStay</title>
     <link rel="stylesheet" href="css/webmaster.css">
     <style>
     </style>

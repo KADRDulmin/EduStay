@@ -9,6 +9,7 @@ if ($db->dbConnect()) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<?php include('header.php'); ?>
     <br>
     <h1>WELCOME TO <br><span style="color: rgba(59, 181, 75, 1);">GREEN</span> ACCOMMODATION</h1>
 
@@ -19,7 +20,7 @@ if ($db->dbConnect()) {
         </style>
 </head>
 <body>
-<?php include('header.php'); ?>
+
   <div class="sign-page">
   
     <div class="form">
